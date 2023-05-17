@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
-import ItemName from "./components/ItemName";
+import Comparison from "./components/Comparison";
 
 const baseURL = "https://prices.runescape.wiki/api/v1/osrs/mapping";
-const iconUrlPrefix = "https://static.runelite.net/cache/item/icon/";
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -27,21 +26,7 @@ function App() {
 
   return (
     <>
-      <main>
-        <div>
-          <h1>{post1.name}</h1>
-          <p>{post1.examine}</p>
-          <img src={`${iconUrlPrefix}${post1.id}.png`} alt={post1.name} />
-        </div>
-        <span>
-          VS
-        </span>
-        <div>
-          <h1>{post2.name}</h1>
-          <p>{post2.examine}</p>
-          <img src={`${iconUrlPrefix}${post2.id}.png`} alt={post2.name} />
-        </div>
-      </main>
+      <Comparison item1={post1} item2={post2} />
     </>
   );
 }
