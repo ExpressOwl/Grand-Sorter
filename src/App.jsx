@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
+import ItemName from "./components/ItemName";
 
 const baseURL = "https://prices.runescape.wiki/api/v1/osrs/mapping";
 const iconUrlPrefix = "https://static.runelite.net/cache/item/icon/";
@@ -32,6 +33,9 @@ function App() {
           <p>{post1.examine}</p>
           <img src={`${iconUrlPrefix}${post1.id}.png`} alt={post1.name} />
         </div>
+        <span>
+          VS
+        </span>
         <div>
           <h1>{post2.name}</h1>
           <p>{post2.examine}</p>
