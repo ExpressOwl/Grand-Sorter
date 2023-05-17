@@ -10,10 +10,18 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function formatPrice(price) {
+  if (price >= 10000) {
+    return price.toLocaleString();
+  }
+  return price.toString();
+}
+
 function App() {
   const [post1, setPost1] = useState(null);
   const [post2, setPost2] = useState(null);
   const [price1, setPrice1] = useState("");
+  const [price2, setPrice2] = useState("");
 
   useEffect(() => {
     axios.get(baseURL).then((res) => {
@@ -26,8 +34,13 @@ function App() {
       setPost2(randomItem2);
 
       axios.get(priceURL).then((res) => {
-        console.log(res.data.data[randomItem1.id]);
-        console.log(res.data.data[randomItem2.id]);
+        const price1 = res.data.data[randomItem1.id].high;
+        const formattedPrice1 = formatPrice(price1);
+        setPrice1(formattedPrice1);
+
+        const price2 = res.data.data[randomItem2.id].high;
+        const formattedPrice2 = formatPrice(price2);
+        setPrice2(formattedPrice2);
       });
     });
   }, []);
@@ -36,6 +49,10 @@ function App() {
 
   return (
     <>
+      <div>
+        <h2>Price 1: {price1}</h2>
+        <h2>Price 2: {price2}</h2>
+      </div>
       <Comparison item1={post1} item2={post2} />
     </>
   );
