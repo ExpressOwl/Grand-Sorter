@@ -1,7 +1,6 @@
 import React from "react";
 
 const Item = ({ item }) => {
-  // const baseURL = "https://prices.runescape.wiki/api/v1/osrs/mapping";
   const iconUrlPrefix = "https://static.runelite.net/cache/item/icon/";
 
   return (
