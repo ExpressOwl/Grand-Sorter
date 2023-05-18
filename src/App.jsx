@@ -2,19 +2,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 import Comparison from "./components/Comparison";
+import { formatPrice } from "./utils";
 
 const baseURL = "https://prices.runescape.wiki/api/v1/osrs/mapping";
 const priceURL = "https://prices.runescape.wiki/api/v1/osrs/latest";
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function formatPrice(price) {
-  if (price >= 10000) {
-    return price.toLocaleString();
-  }
-  return price.toString();
 }
 
 function App() {
@@ -49,11 +43,15 @@ function App() {
 
   return (
     <>
-      <div>
-        <h2>Price 1: {price1}</h2>
-        <h2>Price 2: {price2}</h2>
+      <div className="bg-[url(./assets/osrs-bg.jpg)] flex h-screen justify-center items-center bg-center bg-repeat-y bg-black font-runescape">
+        <Comparison
+          className=''
+          item1={post1}
+          item2={post2}
+          price1={price1}
+          price2={price2}
+        />
       </div>
-      <Comparison item1={post1} item2={post2} />
     </>
   );
 }
