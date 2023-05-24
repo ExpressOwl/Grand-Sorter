@@ -1,14 +1,18 @@
 import React from "react";
 
-const Item = ({ item }) => {
+const Item = ({ item, onClick }) => {
   const iconUrlPrefix = "https://static.runelite.net/cache/item/icon/";
 
   return (
-    <div className="">
+    <button className="bg-red-500" onClick={onClick}>
       <h1>{item.name}</h1>
       <p className="mt-4">{item.examine}</p>
-      <img className="justify-center mx-auto mt-8" src={`${iconUrlPrefix}${item.id}.png`} alt={item.name} />
-    </div>
+      <img
+        className="mx-auto mt-8 justify-center"
+        src={`${iconUrlPrefix}${item.id}.png`}
+        alt={item.name}
+      />
+    </button>
   );
 };
 

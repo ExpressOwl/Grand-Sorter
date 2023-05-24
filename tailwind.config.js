@@ -4,8 +4,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'runescape': ['OSRS']
-      }
+        PTSerif: ["PT Serif", "Georgia", "serif"],
+      },
     },
   },
   plugins: [],

@@ -43,9 +43,9 @@ function App() {
 
   return (
     <>
-      <div className="bg-[url(./assets/osrs-bg.jpg)] flex h-screen justify-center items-center bg-center bg-repeat-y bg-black font-runescape">
+      <div className="bg-[url(./assets/osrs-bg.jpg)] flex h-screen justify-center items-center bg-center bg-repeat-y bg-black font-PTSerif">
         <Comparison
-          className=''
+          className=""
           item1={post1}
           item2={post2}
           price1={price1}
