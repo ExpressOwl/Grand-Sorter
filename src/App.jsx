@@ -43,17 +43,23 @@ function App() {
 
   return (
     <>
-      <div className="bg-[url(./assets/osrs-bg.jpg)] flex h-screen justify-center items-center bg-center bg-repeat-y bg-black font-PTSerif">
-        <Comparison
-          className=""
-          item1={post1}
-          item2={post2}
-          price1={price1}
-          price2={price2}
-        />
+      <div className="h-screen w-auto items-center justify-center bg-black bg-[url(./assets/osrs-bg.jpg)] bg-center bg-repeat-y font-PTSerif">
+        <header className="mx-auto mb-20 min-h-[135px] bg-[url(./assets/osrs-header.png)] bg-center bg-no-repeat text-center"></header>
+        <section className="relative min-h-[500px] bg-[url(./assets/scroll-backdrop.gif)] bg-center bg-repeat-y">
+          <span className="absolute top-[-44px] min-h-[50px] w-full min-w-[815px] bg-[url(./assets/scroll-top.gif)] bg-center bg-no-repeat"></span>
+          <Comparison
+            item1={post1}
+            item2={post2}
+            price1={price1}
+            price2={price2}
+          />
+          <span className="absolute bottom-[-40px] min-h-[50px] w-full min-w-[815px] bg-[url(./assets/scroll-top.gif)] bg-center bg-no-repeat"></span>
+        </section>
       </div>
     </>
   );
 }
 
 export default App;
+
+// before:content-[url(./assets/scroll-top.gif)]

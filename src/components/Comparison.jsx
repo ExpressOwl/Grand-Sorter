@@ -14,10 +14,12 @@ const Comparison = ({ item1, item2, price1, price2 }) => {
   };
 
   return (
-    <div className="text-slate-300 text-center">
+    <div className="text-center font-bold text-black p-4">
       <Item item={item1} onClick={() => handleItemClick(price1, price2)} />
       <h2>Price: {price1} gp</h2>
-      <span className="flex justify-center text-5xl">VS</span>
+      <span className="mx-auto my-8 flex min-h-[126px] min-w-[152px] items-center justify-center bg-[url(./assets/button.gif)] bg-center bg-no-repeat text-center text-5xl">
+        VS
+      </span>
       <Item item={item2} onClick={() => handleItemClick(price2, price1)} />
       <h2>Price: {price2} gp</h2>
     </div>
