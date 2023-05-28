@@ -43,18 +43,18 @@ function App() {
 
   return (
     <>
-      <div className="h-screen w-auto items-center justify-center bg-black bg-[url(./assets/osrs-bg.jpg)] bg-center bg-repeat-y font-PTSerif">
-        <header className="mx-auto mb-20 min-h-[135px] bg-[url(./assets/osrs-header.png)] bg-center bg-no-repeat text-center"></header>
-        <section className="relative min-h-[500px] bg-[url(./assets/scroll-backdrop.gif)] bg-center bg-repeat-y">
-          <span className="absolute top-[-44px] min-h-[50px] w-full min-w-[815px] bg-[url(./assets/scroll-top.gif)] bg-center bg-no-repeat"></span>
+      <div className="min-h-[800px] h-screen items-center justify-center bg-black bg-[url(./assets/osrs-bg.jpg)] bg-center bg-repeat-y font-PTSerif">
+        <header className="mx-auto mb-20 h-[135px] justify-center bg-[url(./assets/osrs-header.png)] bg-center bg-no-repeat text-center"></header>
+        <main className="relative h-400px mx-auto w-[340px] rounded-xl bg-[url(./assets/scroll-backdrop.gif)] bg-center bg-repeat-y lg:w-[600px]">
+          <div className="absolute left-0 right-0 top-[-33px] h-[50px] bg-[url(./assets/scroll-top.gif)] bg-contain bg-center bg-no-repeat "></div>
           <Comparison
             item1={post1}
             item2={post2}
             price1={price1}
             price2={price2}
           />
-          <span className="absolute bottom-[-40px] min-h-[50px] w-full min-w-[815px] bg-[url(./assets/scroll-top.gif)] bg-center bg-no-repeat"></span>
-        </section>
+          <div className="absolute left-0 right-0 bottom-[-31px] h-[50px] bg-[url(./assets/scroll-top.gif)] bg-contain bg-center bg-no-repeat "></div>
+        </main>
       </div>
     </>
   );
