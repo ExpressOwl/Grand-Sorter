@@ -16,8 +16,13 @@ function App() {
   const [post2, setPost2] = useState(null);
   const [price1, setPrice1] = useState("");
   const [price2, setPrice2] = useState("");
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = () => {
     axios.get(baseURL).then((res) => {
       const randomItemIndex1 = getRandomInt(0, res.data.length - 1);
       const randomItem1 = res.data[randomItemIndex1];
@@ -37,23 +42,33 @@ function App() {
         setPrice2(formattedPrice2);
       });
     });
-  }, []);
+  };
+
+  const handleCorrectAnswer = () => {
+    setScore((prevScore) => prevScore + 1);
+  };
 
   if (!post1 || !post2) return null;
 
   return (
     <>
-      <div className="min-h-[800px] h-screen items-center justify-center bg-black bg-[url(./assets/osrs-bg.jpg)] bg-center bg-repeat-y font-PTSerif">
+      <div className="h-screen min-h-[800px] items-center justify-center bg-black bg-[url(./assets/osrs-bg.jpg)] bg-center bg-repeat-y font-PTSerif">
         <header className="mx-auto mb-20 h-[135px] justify-center bg-[url(./assets/osrs-header.png)] bg-center bg-no-repeat text-center"></header>
-        <main className="relative h-400px mx-auto w-[340px] rounded-xl bg-[url(./assets/scroll-backdrop.gif)] bg-center bg-repeat-y lg:w-[600px]">
+
+        <div className=" mx-auto justify-center bg-[url(./assets/button.gif)] bg-contain bg-center bg-no-repeat text-center text-lg text-red-500">
+          Score: {score}
+        </div>
+        
+        <main className="h-400px relative mx-auto w-[340px] rounded-xl bg-[url(./assets/scroll-backdrop.gif)] bg-center bg-repeat-y lg:w-[600px]">
           <div className="absolute left-0 right-0 top-[-33px] h-[50px] bg-[url(./assets/scroll-top.gif)] bg-contain bg-center bg-no-repeat "></div>
           <Comparison
             item1={post1}
             item2={post2}
             price1={price1}
             price2={price2}
+            onCorrectAnswer={handleCorrectAnswer}
           />
-          <div className="absolute left-0 right-0 bottom-[-31px] h-[50px] bg-[url(./assets/scroll-top.gif)] bg-contain bg-center bg-no-repeat "></div>
+          <div className="absolute bottom-[-31px] left-0 right-0 h-[50px] bg-[url(./assets/scroll-top.gif)] bg-contain bg-center bg-no-repeat "></div>
         </main>
       </div>
     </>
@@ -61,5 +76,3 @@ function App() {
 }
 
 export default App;
-
-// before:content-[url(./assets/scroll-top.gif)]
