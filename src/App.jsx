@@ -5,6 +5,7 @@ import Comparison from "./components/Comparison";
 import { formatPrice } from "./utils";
 import ScoreDisplay from "./components/ScoreDisplay";
 import soundFiles from "./soundFiles";
+import MuteButton from "./components/MuteButton";
 
 const baseURL = "https://prices.runescape.wiki/api/v1/osrs/mapping";
 const priceURL = "https://prices.runescape.wiki/api/v1/osrs/latest";
@@ -19,6 +20,7 @@ function App() {
   const [price1, setPrice1] = useState("");
   const [price2, setPrice2] = useState("");
   const [score, setScore] = useState(0);
+  const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -48,16 +50,20 @@ function App() {
 
   const handleCorrectAnswer = () => {
     setScore((prevScore) => prevScore + 1);
-    const randomIndex = Math.floor(Math.random() * soundFiles.length);
-    const randomSound = soundFiles[randomIndex];
-    const audio = new Audio(randomSound);
-    audio.play();
+    if (!isMuted) {
+      const randomIndex = Math.floor(Math.random() * soundFiles.length);
+      const randomSound = soundFiles[randomIndex];
+      const audio = new Audio(randomSound);
+      audio.play();
+    }
   };
 
   const handleWrongAnswer = () => {
     setScore((prevScore) => prevScore - 2);
-    let audio = new Audio("/Smite.ogg");
-    audio.play();
+    if (!isMuted) {
+      let audio = new Audio("/Smite.ogg");
+      audio.play();
+    }
   };
 
   if (!post1 || !post2) return null;
@@ -67,7 +73,14 @@ function App() {
       <div className="h-screen min-h-[1000px] items-center justify-center bg-black bg-[url(./assets/osrs-bg.jpg)] bg-center bg-repeat-y font-PTSerif">
         <header className="mx-auto mb-10 h-[135px] justify-center bg-[url(./assets/osrs-header.png)] bg-center bg-no-repeat text-center"></header>
 
-        <ScoreDisplay score={score} />
+        <div className="flex content-evenly justify-center">
+          <MuteButton
+            isMuted={isMuted}
+            onToggleMute={() => setIsMuted((prevMuteState) => !prevMuteState)}
+          />
+
+          <ScoreDisplay score={score} />
+        </div>
 
         <main className="h-400px relative mx-auto w-[340px] rounded-xl bg-[url(./assets/scroll-backdrop.gif)] bg-center bg-repeat-y lg:w-[600px]">
           <div className="absolute left-0 right-0 top-[-33px] h-[50px] bg-[url(./assets/scroll-top.gif)] bg-contain bg-center bg-no-repeat "></div>

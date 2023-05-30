@@ -30,7 +30,7 @@ const Comparison = ({
       <Item item={item1} onClick={() => handleItemClick(price1, price2)} />
       {isButtonClicked && <h2>Price: {price1} gp</h2>}
       <div>
-        <span className="mx-auto my-8 flex h-[126px] w-[152px] items-center justify-center bg-[url(./assets/button.gif)] bg-center bg-no-repeat text-center text-5xl text-white">
+        <span className="cursor-default mx-auto my-8 flex h-[126px] w-[152px] items-center justify-center bg-[url(./assets/button.gif)] bg-center bg-no-repeat text-center text-5xl text-white">
           VS
         </span>
       </div>
