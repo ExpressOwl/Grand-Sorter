@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import Item from "./Item";
 import { parsePrice } from "../utils";
 
-const Comparison = ({ item1, item2, price1, price2, onCorrectAnswer }) => {
+const Comparison = ({
+  item1,
+  item2,
+  price1,
+  price2,
+  onCorrectAnswer,
+  onWrongAnswer,
+}) => {
   const [isButtonClicked, setisButtonClicked] = useState(false);
 
   const handleItemClick = (itemPriceA, itemPriceB) => {
@@ -10,9 +17,10 @@ const Comparison = ({ item1, item2, price1, price2, onCorrectAnswer }) => {
     const intB = parsePrice(itemPriceB);
     if (intA > intB) {
       console.log("correct");
-      onCorrectAnswer()
+      onCorrectAnswer();
     } else {
       console.log("wrong");
+      onWrongAnswer();
     }
     setisButtonClicked(true);
   };
