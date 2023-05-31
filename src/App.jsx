@@ -20,11 +20,19 @@ function App() {
   const [price1, setPrice1] = useState("");
   const [price2, setPrice2] = useState("");
   const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const storedHighScore = localStorage.getItem("highScore");
+    if (storedHighScore) {
+      setHighScore(parseInt(storedHighScore));
+    }
+  });
 
   const fetchData = () => {
     axios.get(baseURL).then((res) => {
@@ -50,12 +58,22 @@ function App() {
 
   const handleCorrectAnswer = () => {
     setScore((prevScore) => prevScore + 1);
+
+    if (score + 1 > highScore) {
+      setHighScore(score + 1);
+      localStorage.setItem("highScore", score + 1);
+    }
+
     if (!isMuted) {
       const randomIndex = Math.floor(Math.random() * soundFiles.length);
       const randomSound = soundFiles[randomIndex];
       const audio = new Audio(randomSound);
       audio.play();
     }
+
+    setTimeout(() => {
+      fetchData();
+    }, 2000);
   };
 
   const handleWrongAnswer = () => {
@@ -64,6 +82,10 @@ function App() {
       let audio = new Audio("/Smite.ogg");
       audio.play();
     }
+
+    setTimeout(() => {
+      fetchData();
+    }, 2000);
   };
 
   if (!post1 || !post2) return null;
@@ -79,7 +101,7 @@ function App() {
             onToggleMute={() => setIsMuted((prevMuteState) => !prevMuteState)}
           />
 
-          <ScoreDisplay score={score} />
+          <ScoreDisplay score={score} highScore={highScore} />
         </div>
 
         <main className="h-400px relative mx-auto w-[340px] rounded-xl bg-[url(./assets/scroll-backdrop.gif)] bg-center bg-repeat-y lg:w-[600px]">
@@ -91,6 +113,7 @@ function App() {
             price2={price2}
             onCorrectAnswer={handleCorrectAnswer}
             onWrongAnswer={handleWrongAnswer}
+            fetchData={fetchData}
           />
           <div className="absolute bottom-[-31px] left-0 right-0 h-[50px] bg-[url(./assets/scroll-top.gif)] bg-contain bg-center bg-no-repeat"></div>
         </main>

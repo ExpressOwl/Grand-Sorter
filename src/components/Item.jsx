@@ -1,6 +1,6 @@
 import React from "react";
 
-const Item = ({ item, onClick }) => {
+const Item = ({ item, onClick, }) => {
   const iconUrlPrefix = "https://static.runelite.net/cache/item/icon/";
 
   return (
