@@ -10,6 +10,7 @@ const Comparison = ({
   onCorrectAnswer,
   onWrongAnswer,
   fetchData,
+  disabled,
 }) => {
   const [isButtonClicked, setisButtonClicked] = useState(false);
   const [isDataFetched, setIsDataFetched] = useState(false);
@@ -38,7 +39,11 @@ const Comparison = ({
 
   return (
     <div className="grid h-auto text-center font-bold">
-      <Item item={item1} onClick={() => handleItemClick(price1, price2)} />
+      <Item
+        item={item1}
+        onClick={() => handleItemClick(price1, price2)}
+        disabled={disabled}
+      />
 
       {isButtonClicked && (
         <p className={isDataFetched ? "visible" : "invisible"}>
@@ -51,7 +56,11 @@ const Comparison = ({
           VS
         </span>
       </div>
-      <Item item={item2} onClick={() => handleItemClick(price2, price1)} />
+      <Item
+        item={item2}
+        onClick={() => handleItemClick(price2, price1)}
+        disabled={disabled}
+      />
       <div className="mb-4">
         {isButtonClicked && (
           <p className={isDataFetched ? "visible" : "invisible"}>

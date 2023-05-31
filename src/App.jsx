@@ -22,6 +22,7 @@ function App() {
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -57,6 +58,7 @@ function App() {
   };
 
   const handleCorrectAnswer = () => {
+    setDisabled(true);
     setScore((prevScore) => prevScore + 1);
 
     if (score + 1 > highScore) {
@@ -72,11 +74,13 @@ function App() {
     }
 
     setTimeout(() => {
+      setDisabled(false);
       fetchData();
     }, 2000);
   };
 
   const handleWrongAnswer = () => {
+    setDisabled(true);
     setScore((prevScore) => prevScore - 2);
     if (!isMuted) {
       let audio = new Audio("/Smite.ogg");
@@ -84,6 +88,7 @@ function App() {
     }
 
     setTimeout(() => {
+      setDisabled(false);
       fetchData();
     }, 2000);
   };
@@ -114,6 +119,7 @@ function App() {
             onCorrectAnswer={handleCorrectAnswer}
             onWrongAnswer={handleWrongAnswer}
             fetchData={fetchData}
+            disabled={disabled}
           />
           <div className="absolute bottom-[-31px] left-0 right-0 h-[50px] bg-[url(./assets/scroll-top.gif)] bg-contain bg-center bg-no-repeat"></div>
         </main>
