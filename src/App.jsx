@@ -81,7 +81,12 @@ function App() {
 
   const handleWrongAnswer = () => {
     setDisabled(true);
-    setScore((prevScore) => prevScore - 2);
+    setScore((prevScore) => {
+      if (prevScore > 0) {
+        return prevScore - 1;
+      }
+      return 0;
+    });
     if (!isMuted) {
       let audio = new Audio("/Smite.ogg");
       audio.play();
