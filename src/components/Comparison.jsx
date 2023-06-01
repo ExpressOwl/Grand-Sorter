@@ -13,15 +13,18 @@ const Comparison = ({
   onWrongAnswer,
   fetchData,
   disabled,
+  setScore,
 }) => {
   const [isButtonClicked, setisButtonClicked] = useState(false);
   const [isDataFetched, setIsDataFetched] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [countdown, setCountdown] = useState(70);
+  const [countdown, setCountdown] = useState(60);
   const [isRunning, setIsRunning] = useState(false);
+  const [startButtonClicked, setStartButtonClicked] = useState(false);
 
   const startTimer = () => {
     setIsRunning(true);
+    setStartButtonClicked(true);
   };
 
   useEffect(() => {
@@ -36,6 +39,9 @@ const Comparison = ({
     if (countdown === 0) {
       clearInterval(timerId);
       setIsRunning(false);
+      setStartButtonClicked(false);
+      setCountdown(60);
+      setScore(0);
     }
 
     return () => clearInterval(timerId);
@@ -77,11 +83,13 @@ const Comparison = ({
 
   return (
     <div className="grid h-auto text-center font-bold">
-      <Item
-        item={item1}
-        onClick={() => handleItemClick(price1, price2)}
-        disabled={disabled}
-      />
+      {startButtonClicked && (
+        <Item
+          item={item1}
+          onClick={() => handleItemClick(price1, price2)}
+          disabled={disabled}
+        />
+      )}
 
       {isButtonClicked && (
         <p className={isDataFetched ? "visible" : "invisible"}>
@@ -120,11 +128,14 @@ const Comparison = ({
         )}
       </div>
 
-      <Item
-        item={item2}
-        onClick={() => handleItemClick(price2, price1)}
-        disabled={disabled}
-      />
+      {startButtonClicked && (
+        <Item
+          item={item2}
+          onClick={() => handleItemClick(price2, price1)}
+          disabled={disabled}
+        />
+      )}
+
       <div className="mb-4">
         {isButtonClicked && (
           <p className={isDataFetched ? "visible" : "invisible"}>

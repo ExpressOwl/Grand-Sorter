@@ -125,6 +125,7 @@ function App() {
             onWrongAnswer={handleWrongAnswer}
             fetchData={fetchData}
             disabled={disabled}
+            setScore={setScore}
           />
           <div className="absolute bottom-[-31px] left-0 right-0 h-[50px] bg-[url(./assets/scroll-top.gif)] bg-contain bg-center bg-no-repeat"></div>
         </main>
