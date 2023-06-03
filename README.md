@@ -18,13 +18,13 @@ This is a web application that allows users to compare the prices of two items f
 
 There are three main components for the web application but there are also smaller components as well such as the utils.jsx files which holds functions to convert the API prices from string to number.
 
-- App
+- App:
   The main component that serves as the entry point of the application. It manages the state and handles the fetching of item data, score tracking, and high score management.
 
-- Comparison
+- Comparison:
   A component responsible for displaying the two items for comparison. It starts the countdown timer and handles user interactions, such as selecting the correct item and updating the score.
 
-- Item
+- Item:
   A reusable component that represents an individual item. It displays the item's details, such as name and image, and allows the user to click on it for selection.
 
 # Dependencies
