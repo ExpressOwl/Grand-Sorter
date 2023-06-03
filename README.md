@@ -1,5 +1,5 @@
 # Grand Sorter
-This is a web application that allows users to compare the prices of two items from the game Oldschool Runescape and test their knowledge. The app utilizes React.js and Tailwind CSS.
+This is a web application that allows users to compare the prices of two items from the game Oldschool Runescape and test their knowledge. The app utilizes React.js and Tailwind CSS. By the way my high score is 12.
 
 # Features
 * Fetches item data from an external API (https://oldschool.runescape.wiki/w/RuneScape:Real-time_Prices) to display two items for comparison.
